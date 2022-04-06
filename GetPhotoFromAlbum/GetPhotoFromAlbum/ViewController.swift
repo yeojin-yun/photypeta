@@ -9,6 +9,8 @@ import UIKit
 import Photos
 import PhotosUI
 
+//Photopicker 이용 (native)
+
 class ViewController: UIViewController {
 
     private var collectionView: UICollectionView?
@@ -24,8 +26,7 @@ class ViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didRightAddTapped))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Asset", style: .plain, target: self, action: #selector(didLeftBtnTapped))
-        
-        //populatePhotos()
+
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -39,12 +40,6 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
         
         view.addSubview(collectionView)
-//        collectionView.frame = view.bounds
-        
-        self.allMedia = PHAsset.fetchAssets(with: nil)
-        
-        //self.collectionView.reloadData()
-        self.thumnailSize = CGSize(width: 1024 * self.scale, height: 1024 * self.scale)
     }
     
     @objc private func didRightAddTapped() {
@@ -53,7 +48,6 @@ class ViewController: UIViewController {
         config.filter = .images
         let vc = PHPickerViewController(configuration: config)
         vc.delegate = self
-        //navigationController?.pushViewController(vc, animated: true)
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
@@ -62,19 +56,6 @@ class ViewController: UIViewController {
         let vc = GetPhotoFromLibraryViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
-//    private func populatePhotos() {
-//        PHPhotoLibrary.requestAuthorization { [weak self] status in
-//            if status == .authorized {
-//                let assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: nil)
-//                assets.enumerateObjects { (object, _, _) in
-//                    //self.images.append(object)
-//                }
-//            }
-//        }
-//    }
-
 
 }
 

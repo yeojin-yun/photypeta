@@ -7,33 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C2F9FB927FC207800014709 /* GetPhotoFromLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2F9FB827FC207800014709 /* GetPhotoFromLibraryViewController.swift */; };
-		0C2F9FBB27FC59D200014709 /* Ex_UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2F9FBA27FC59D200014709 /* Ex_UIImageView.swift */; };
-		0CF408D627FABA37008B6B6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF408D527FABA37008B6B6B /* AppDelegate.swift */; };
-		0CF408D827FABA37008B6B6B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF408D727FABA37008B6B6B /* SceneDelegate.swift */; };
-		0CF408DA27FABA37008B6B6B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF408D927FABA37008B6B6B /* ViewController.swift */; };
-		0CF408DD27FABA37008B6B6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CF408DB27FABA37008B6B6B /* Main.storyboard */; };
-		0CF408DF27FABA39008B6B6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CF408DE27FABA39008B6B6B /* Assets.xcassets */; };
-		0CF408E227FABA39008B6B6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CF408E027FABA39008B6B6B /* LaunchScreen.storyboard */; };
-		0CF408EA27FAD383008B6B6B /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF408E927FAD383008B6B6B /* CustomCollectionViewCell.swift */; };
+		0C2F9FEB27FD127900014709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2F9FEA27FD127900014709 /* AppDelegate.swift */; };
+		0C2F9FED27FD127900014709 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2F9FEC27FD127900014709 /* SceneDelegate.swift */; };
+		0C2F9FEF27FD127900014709 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2F9FEE27FD127900014709 /* ViewController.swift */; };
+		0C2F9FF227FD127900014709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C2F9FF027FD127900014709 /* Main.storyboard */; };
+		0C2F9FF427FD127A00014709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C2F9FF327FD127A00014709 /* Assets.xcassets */; };
+		0C2F9FF727FD127A00014709 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C2F9FF527FD127A00014709 /* LaunchScreen.storyboard */; };
+		0C2F9FFF27FD16F800014709 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2F9FFE27FD16F800014709 /* CustomCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0C2F9FB827FC207800014709 /* GetPhotoFromLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPhotoFromLibraryViewController.swift; sourceTree = "<group>"; };
-		0C2F9FBA27FC59D200014709 /* Ex_UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ex_UIImageView.swift; sourceTree = "<group>"; };
-		0CF408D227FABA37008B6B6B /* GetPhotoFromAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetPhotoFromAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0CF408D527FABA37008B6B6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0CF408D727FABA37008B6B6B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0CF408D927FABA37008B6B6B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0CF408DC27FABA37008B6B6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0CF408DE27FABA39008B6B6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0CF408E127FABA39008B6B6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0CF408E327FABA39008B6B6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0CF408E927FAD383008B6B6B /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		0C2F9FE727FD127900014709 /* BuildingTabBarVC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuildingTabBarVC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C2F9FEA27FD127900014709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0C2F9FEC27FD127900014709 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		0C2F9FEE27FD127900014709 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0C2F9FF127FD127900014709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0C2F9FF327FD127A00014709 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0C2F9FF627FD127A00014709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0C2F9FF827FD127A00014709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C2F9FFE27FD16F800014709 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0CF408CF27FABA37008B6B6B /* Frameworks */ = {
+		0C2F9FE427FD127900014709 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -43,75 +39,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0CF408C927FABA37008B6B6B = {
+		0C2F9FDE27FD127900014709 = {
 			isa = PBXGroup;
 			children = (
-				0CF408D427FABA37008B6B6B /* GetPhotoFromAlbum */,
-				0CF408D327FABA37008B6B6B /* Products */,
+				0C2F9FE927FD127900014709 /* BuildingTabBarVC */,
+				0C2F9FE827FD127900014709 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		0CF408D327FABA37008B6B6B /* Products */ = {
+		0C2F9FE827FD127900014709 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0CF408D227FABA37008B6B6B /* GetPhotoFromAlbum.app */,
+				0C2F9FE727FD127900014709 /* BuildingTabBarVC.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0CF408D427FABA37008B6B6B /* GetPhotoFromAlbum */ = {
+		0C2F9FE927FD127900014709 /* BuildingTabBarVC */ = {
 			isa = PBXGroup;
 			children = (
-				0CF408D527FABA37008B6B6B /* AppDelegate.swift */,
-				0CF408D727FABA37008B6B6B /* SceneDelegate.swift */,
-				0CF408D927FABA37008B6B6B /* ViewController.swift */,
-				0C2F9FB827FC207800014709 /* GetPhotoFromLibraryViewController.swift */,
-				0CF408E927FAD383008B6B6B /* CustomCollectionViewCell.swift */,
-				0CF408DB27FABA37008B6B6B /* Main.storyboard */,
-				0CF408DE27FABA39008B6B6B /* Assets.xcassets */,
-				0CF408E027FABA39008B6B6B /* LaunchScreen.storyboard */,
-				0CF408E327FABA39008B6B6B /* Info.plist */,
-				0C2F9FBA27FC59D200014709 /* Ex_UIImageView.swift */,
+				0C2F9FEA27FD127900014709 /* AppDelegate.swift */,
+				0C2F9FEC27FD127900014709 /* SceneDelegate.swift */,
+				0C2F9FEE27FD127900014709 /* ViewController.swift */,
+				0C2F9FFE27FD16F800014709 /* CustomCollectionViewCell.swift */,
+				0C2F9FF027FD127900014709 /* Main.storyboard */,
+				0C2F9FF327FD127A00014709 /* Assets.xcassets */,
+				0C2F9FF527FD127A00014709 /* LaunchScreen.storyboard */,
+				0C2F9FF827FD127A00014709 /* Info.plist */,
 			);
-			path = GetPhotoFromAlbum;
+			path = BuildingTabBarVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0CF408D127FABA37008B6B6B /* GetPhotoFromAlbum */ = {
+		0C2F9FE627FD127900014709 /* BuildingTabBarVC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0CF408E627FABA39008B6B6B /* Build configuration list for PBXNativeTarget "GetPhotoFromAlbum" */;
+			buildConfigurationList = 0C2F9FFB27FD127A00014709 /* Build configuration list for PBXNativeTarget "BuildingTabBarVC" */;
 			buildPhases = (
-				0CF408CE27FABA37008B6B6B /* Sources */,
-				0CF408CF27FABA37008B6B6B /* Frameworks */,
-				0CF408D027FABA37008B6B6B /* Resources */,
+				0C2F9FE327FD127900014709 /* Sources */,
+				0C2F9FE427FD127900014709 /* Frameworks */,
+				0C2F9FE527FD127900014709 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = GetPhotoFromAlbum;
-			productName = GetPhotoFromAlbum;
-			productReference = 0CF408D227FABA37008B6B6B /* GetPhotoFromAlbum.app */;
+			name = BuildingTabBarVC;
+			productName = BuildingTabBarVC;
+			productReference = 0C2F9FE727FD127900014709 /* BuildingTabBarVC.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		0CF408CA27FABA37008B6B6B /* Project object */ = {
+		0C2F9FDF27FD127900014709 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1320;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
 				TargetAttributes = {
-					0CF408D127FABA37008B6B6B = {
-						CreatedOnToolsVersion = 13.2.1;
+					0C2F9FE627FD127900014709 = {
+						CreatedOnToolsVersion = 13.3;
 					};
 				};
 			};
-			buildConfigurationList = 0CF408CD27FABA37008B6B6B /* Build configuration list for PBXProject "GetPhotoFromAlbum" */;
+			buildConfigurationList = 0C2F9FE227FD127900014709 /* Build configuration list for PBXProject "BuildingTabBarVC" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -119,58 +113,56 @@
 				en,
 				Base,
 			);
-			mainGroup = 0CF408C927FABA37008B6B6B;
-			productRefGroup = 0CF408D327FABA37008B6B6B /* Products */;
+			mainGroup = 0C2F9FDE27FD127900014709;
+			productRefGroup = 0C2F9FE827FD127900014709 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0CF408D127FABA37008B6B6B /* GetPhotoFromAlbum */,
+				0C2F9FE627FD127900014709 /* BuildingTabBarVC */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0CF408D027FABA37008B6B6B /* Resources */ = {
+		0C2F9FE527FD127900014709 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CF408E227FABA39008B6B6B /* LaunchScreen.storyboard in Resources */,
-				0CF408DF27FABA39008B6B6B /* Assets.xcassets in Resources */,
-				0CF408DD27FABA37008B6B6B /* Main.storyboard in Resources */,
+				0C2F9FF727FD127A00014709 /* LaunchScreen.storyboard in Resources */,
+				0C2F9FF427FD127A00014709 /* Assets.xcassets in Resources */,
+				0C2F9FF227FD127900014709 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0CF408CE27FABA37008B6B6B /* Sources */ = {
+		0C2F9FE327FD127900014709 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C2F9FB927FC207800014709 /* GetPhotoFromLibraryViewController.swift in Sources */,
-				0CF408DA27FABA37008B6B6B /* ViewController.swift in Sources */,
-				0CF408D627FABA37008B6B6B /* AppDelegate.swift in Sources */,
-				0CF408D827FABA37008B6B6B /* SceneDelegate.swift in Sources */,
-				0CF408EA27FAD383008B6B6B /* CustomCollectionViewCell.swift in Sources */,
-				0C2F9FBB27FC59D200014709 /* Ex_UIImageView.swift in Sources */,
+				0C2F9FEF27FD127900014709 /* ViewController.swift in Sources */,
+				0C2F9FEB27FD127900014709 /* AppDelegate.swift in Sources */,
+				0C2F9FED27FD127900014709 /* SceneDelegate.swift in Sources */,
+				0C2F9FFF27FD16F800014709 /* CustomCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0CF408DB27FABA37008B6B6B /* Main.storyboard */ = {
+		0C2F9FF027FD127900014709 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0CF408DC27FABA37008B6B6B /* Base */,
+				0C2F9FF127FD127900014709 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		0CF408E027FABA39008B6B6B /* LaunchScreen.storyboard */ = {
+		0C2F9FF527FD127A00014709 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0CF408E127FABA39008B6B6B /* Base */,
+				0C2F9FF627FD127A00014709 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -178,14 +170,13 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		0CF408E427FABA39008B6B6B /* Debug */ = {
+		0C2F9FF927FD127A00014709 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -229,7 +220,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -239,14 +230,13 @@
 			};
 			name = Debug;
 		};
-		0CF408E527FABA39008B6B6B /* Release */ = {
+		0C2F9FFA27FD127A00014709 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -284,7 +274,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -294,7 +284,7 @@
 			};
 			name = Release;
 		};
-		0CF408E727FABA39008B6B6B /* Debug */ = {
+		0C2F9FFC27FD127A00014709 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -303,8 +293,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y89LJ6BC92;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GetPhotoFromAlbum/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진앱에 접근을 허용합니다.";
+				INFOPLIST_FILE = BuildingTabBarVC/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "we requires your photo Library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -315,7 +305,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.yyjyyj333.GetPhotoFromAlbum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.yyjyyj333.BuildingTabBarVC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -323,7 +313,7 @@
 			};
 			name = Debug;
 		};
-		0CF408E827FABA39008B6B6B /* Release */ = {
+		0C2F9FFD27FD127A00014709 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -332,8 +322,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y89LJ6BC92;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GetPhotoFromAlbum/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진앱에 접근을 허용합니다.";
+				INFOPLIST_FILE = BuildingTabBarVC/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "we requires your photo Library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -344,7 +334,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.yyjyyj333.GetPhotoFromAlbum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.yyjyyj333.BuildingTabBarVC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -355,25 +345,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0CF408CD27FABA37008B6B6B /* Build configuration list for PBXProject "GetPhotoFromAlbum" */ = {
+		0C2F9FE227FD127900014709 /* Build configuration list for PBXProject "BuildingTabBarVC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0CF408E427FABA39008B6B6B /* Debug */,
-				0CF408E527FABA39008B6B6B /* Release */,
+				0C2F9FF927FD127A00014709 /* Debug */,
+				0C2F9FFA27FD127A00014709 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0CF408E627FABA39008B6B6B /* Build configuration list for PBXNativeTarget "GetPhotoFromAlbum" */ = {
+		0C2F9FFB27FD127A00014709 /* Build configuration list for PBXNativeTarget "BuildingTabBarVC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0CF408E727FABA39008B6B6B /* Debug */,
-				0CF408E827FABA39008B6B6B /* Release */,
+				0C2F9FFC27FD127A00014709 /* Debug */,
+				0C2F9FFD27FD127A00014709 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 0CF408CA27FABA37008B6B6B /* Project object */;
+	rootObject = 0C2F9FDF27FD127900014709 /* Project object */;
 }

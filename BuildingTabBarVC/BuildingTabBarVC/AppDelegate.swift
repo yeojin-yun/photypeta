@@ -1,18 +1,16 @@
 //
 //  AppDelegate.swift
-//  GetPhotoFromAlbum
+//  BuildingTabBarVC
 //
-//  Created by 순진이 on 2022/04/04.
+//  Created by 순진이 on 2022/04/06.
 //
 
 import UIKit
-import Photos
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    //var allPhotos: PHFetchResult<PHAsset>? = nil
-    //var photoCount = Int()
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
