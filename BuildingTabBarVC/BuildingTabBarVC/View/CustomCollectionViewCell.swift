@@ -25,10 +25,10 @@ class CustomCollectionViewCell: UICollectionViewCell {
         didSet {
             if isSelected {
                 myCheckButton.isHidden = false
-                //print("isSelected")
+
             } else {
                 myCheckButton.isHidden = true
-                //print("isDeselected")
+
             }
         }
     }
@@ -61,5 +61,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        myCheckButton.setImage(nil, for: .normal)
+        myCheckButton.backgroundColor = nil
     }
 }

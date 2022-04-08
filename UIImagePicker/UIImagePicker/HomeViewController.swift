@@ -15,7 +15,7 @@ import PhotosUI
 //컬렉션뷰가 늦게 로드되는 문제는 어떻게 할 것인지?
 //컬렉션뷰 선택 시 view에 나타나는 애니메이션
 //ThumNail photo
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     
     private var allAssetFromLibrary = [PHAsset]() // Library 속 모든 포토
     private var selectedAsset = [PHAsset]() // 선택된 이미지 넣을 배열
@@ -114,7 +114,7 @@ class ViewController: UIViewController {
     
 }
 //MARK: -UICollectionViewDataSource
-extension ViewController: UICollectionViewDataSource {
+extension ViewHomeViewControllerController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
@@ -158,7 +158,7 @@ extension ViewController: UICollectionViewDataSource {
 
 
 //MARK: -UICollectionViewDelegate
-extension ViewController: UICollectionViewDelegate {
+extension HomeViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //bottomCollectionView에서 선택한 셀의 이미지를 seletedImages에 넣어 그 배열을 topcollectionview에 표시
@@ -194,7 +194,7 @@ extension ViewController: UICollectionViewDelegate {
 
 
 
-extension ViewController: UICollectionViewDelegateFlowLayout {
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -223,7 +223,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 }
 
 //MARK: - Setup Navigation Bar Item
-extension ViewController {
+extension HomeViewController {
     func setUpNavigationItem() {
         navigationItem.title = "CollectionViewTest"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(leftBarButtonItemTapped(_:)))
