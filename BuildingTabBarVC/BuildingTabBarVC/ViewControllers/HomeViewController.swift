@@ -211,7 +211,7 @@ extension HomeViewController {
     }
 }
 
-
+//MARK: - Setup CollectionView
 extension HomeViewController {
     func configureCollectionView() {
         setUpTopCollectionView()

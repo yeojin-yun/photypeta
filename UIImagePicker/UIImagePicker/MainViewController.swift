@@ -6,37 +6,121 @@
 //
 
 import UIKit
+import Photos
 
 class MainViewController: UIViewController {
-
+    
+    private var selectedAsset: PHFetchResult<PHAsset>?
+    private var allAssets = [PHAsset]()
+    private var fetchCollection: PHAssetCollection?
+    private var albums: [PHAssetCollection] = []
+    private var selectedImage: [UIImage]?
+    
+//    private var selectedAssetCollection
+    
     var firstImageView = UIImageView()
     var secondImageView = UIImageView()
     var thirdImageView = UIImageView()
     var forthImageView = UIImageView()
     var fifthImageView = UIImageView()
     
-    private var bottomCollectionView: UICollectionView?
+    
+    private var bottomCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let bottomCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        return bottomCollectionView
+    }()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpBottomCollectionView()
-        configureUI()
+//        setUpBottomCollectionView()
+//        configureUI()
+//        popluatePhotos()
+        
+        getPermissionforPhoto { status in
+//            guard
+        }
+            
+        
+        
+        
+    }
+    
+    func getPermissionforPhoto(completionHandler: @escaping (Bool) -> Void) {
+      // 1
+      guard PHPhotoLibrary.authorizationStatus() != .authorized else {
+        completionHandler(true)
+        return
+      }
+      // 2
+      PHPhotoLibrary.requestAuthorization { status in
+        completionHandler(status == .authorized ? true : false)
+      }
     }
     
 
-    func setUpBottomCollectionView() {
-        let topLayout = UICollectionViewFlowLayout()
-        topLayout.scrollDirection = .horizontal
+//
+//        PHPhotoLibrary.requestAuthorization { status in
+//            if status == .authorized {
+//                let resultCollection = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: nil)
+//                print(resultCollection.count)
+//            }
+//        }
+    }
+    
+    private func popluatePhotos() {
+        PHPhotoLibrary.requestAuthorization { status in
+            if status == .authorized {
+                
+                let asset = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: nil)
+                asset.enumerateObjects { [weak self] object, _, _ in
+                    //print(object)
+                    self?.allAssets.append(object)
+                }
+                self.allAssets.reverse()
+                DispatchQueue.main.async {
+                    self.bottomCollectionView.reloadData()
+                }
+            }
+        }
+    }
+    
+    private func checkAuthorizationStatus() {
+        PHPhotoLibrary.checkAuthorizationStatus {
+            if $0 {
+                self.fetchAlbums()
+            }
+        }
+    }
+    
+    private func fetchCollectionFromGallery() {
         
-        bottomCollectionView = UICollectionView(frame: CGRect(x: 0, y: 120, width: view.bounds.size.width, height: 80), collectionViewLayout: topLayout)
-        
-        guard let collectionView = bottomCollectionView else { return }
-        
-        //collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        view.addSubview(collectionView)
+    }
+    
+    private func fetchAlbums() {
+        let result = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: nil)
+        result.enumerateObjects { collection, _, _ in
+            if (collection.hasAssets()) {
+                self.albums.append(collection)
+            }
+        }
+        bottomCollectionView.reloadData()
+    }
+    
+    private func fetchImagesFromGallery(collection: PHAssetCollection?) {
+        DispatchQueue.main.async { [self] in
+            let fetchOptions = PHFetchOptions()
+            fetchOptions.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
+            if let collection = collection {
+                self.selectedAsset = PHAsset.fetchAssets(in: collection, options: fetchOptions)
+            } else {
+                self.selectedAsset = PHAsset.fetchAssets(with: fetchOptions)
+            }
+            self.bottomCollectionView.reloadData()
+        }
     }
 
 }
@@ -47,13 +131,21 @@ extension MainViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return allAssets.count
     }
     
     //⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = bottomCollectionView?.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? UICollectionViewCell else { return }
-        cell.backgroundColor = .red
+        guard let cell = bottomCollectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as? CustomCollectionViewCell else { fatalError("Not Founded Cell") }
+        
+        let asset = self.allAssets[indexPath.item]
+        let manager = PHImageManager.default()
+        manager.requestImage(for: asset, targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFill, options: nil) { image, _ in
+            DispatchQueue.main.async {
+                cell.myImageView.image = image
+                //버튼은 동그라미 표시만 보이도록
+            }
+        }
         return cell
     }
 }
@@ -62,14 +154,17 @@ extension MainViewController: UICollectionViewDataSource {
 extension MainViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-        
+        let newAssetPhoto = allAssets[indexPath.item]
+        let manager = PHImageManager.default()
+        manager.requestImage(for: newAssetPhoto, targetSize: CGSize(width: 80, height: 80), contentMode: .aspectFill, options: nil) { image, _ in
+            DispatchQueue.main.async {
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
 
     }
-
 }
 
 
@@ -84,20 +179,13 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if (collectionView == bottomCollectionView) {
             let size = CGSize(width: view.bounds.size.width/3, height: view.bounds.size.width/3)
             return size
-        } else {
-            let size = CGSize(width: 80, height: 80)
-            return size
-        }
     }
 }
 
 
-//MARK: -Set up UI
-
-
+//MARK: -Setup UI
 extension MainViewController {
     final private func configureUI() {
         setAttributes()
@@ -106,7 +194,10 @@ extension MainViewController {
     }
     
     final private func setAttributes() {
-        
+        [firstImageView, secondImageView, thirdImageView, forthImageView, fifthImageView].forEach {
+            $0.image = UIImage(systemName: "house")
+            $0.backgroundColor = .yellow
+        }
     }
     
     final private func addTarget() {
@@ -118,7 +209,7 @@ extension MainViewController {
         imageStackView.axis = .horizontal
         imageStackView.distribution = .fillEqually
         
-        guard let bottomCollectionView = bottomCollectionView else { return }
+        //guard let bottomCollectionView = bottomCollectionView else { return }
         
         [imageStackView, bottomCollectionView].forEach {
             view.addSubview($0)
@@ -130,15 +221,27 @@ extension MainViewController {
             imageStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             imageStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             imageStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            imageStackView.heightAnchor.constraint(equalToConstant: 80),
             
             bottomCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            bottomCollectionView.topAnchor.constraint(equalTo: imageStackView.bottomAnchor, constant: 50),
+            bottomCollectionView.topAnchor.constraint(equalTo: imageStackView.bottomAnchor, constant: 20),
             bottomCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            bottomCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            bottomCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60)
             
         ])
         
     }
 }
 
+//MARK: -CollectionView setup
+extension MainViewController {
+    
 
+    func setUpBottomCollectionView() {
+        bottomCollectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
+        bottomCollectionView.delegate = self
+        bottomCollectionView.dataSource = self
+        view.addSubview(bottomCollectionView)
+    }
+
+}

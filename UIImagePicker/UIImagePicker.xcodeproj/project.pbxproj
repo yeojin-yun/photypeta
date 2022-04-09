@@ -12,8 +12,12 @@
 		0C528F1727FF107100583A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C528F1527FF107100583A6E /* Main.storyboard */; };
 		0C528F1927FF107200583A6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C528F1827FF107200583A6E /* Assets.xcassets */; };
 		0C528F1C27FF107200583A6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C528F1A27FF107200583A6E /* LaunchScreen.storyboard */; };
-		0C528F2627FF10EB00583A6E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C528F2527FF10EB00583A6E /* HomeViewController.swift */; };
 		0C528F2827FF115A00583A6E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C528F2727FF115A00583A6E /* MainViewController.swift */; };
+		0C528F6027FFD4AE00583A6E /* CustromCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C528F5F27FFD4AE00583A6E /* CustromCollectionViewCell.swift */; };
+		0C528F6227FFD7E200583A6E /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C528F6127FFD7E200583A6E /* UIImageView+Extension.swift */; };
+		0C528F6427FFEB9900583A6E /* PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C528F6327FFEB9900583A6E /* PHAsset.swift */; };
+		0C528F6627FFEBAB00583A6E /* PHPhotoLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C528F6527FFEBAB00583A6E /* PHPhotoLibrary.swift */; };
+		0C528F6827FFEBB700583A6E /* PHAssetCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C528F6727FFEBB700583A6E /* PHAssetCollection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +28,12 @@
 		0C528F1827FF107200583A6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C528F1B27FF107200583A6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0C528F1D27FF107200583A6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0C528F2527FF10EB00583A6E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0C528F2727FF115A00583A6E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0C528F5F27FFD4AE00583A6E /* CustromCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustromCollectionViewCell.swift; sourceTree = "<group>"; };
+		0C528F6127FFD7E200583A6E /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		0C528F6327FFEB9900583A6E /* PHAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAsset.swift; sourceTree = "<group>"; };
+		0C528F6527FFEBAB00583A6E /* PHPhotoLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPhotoLibrary.swift; sourceTree = "<group>"; };
+		0C528F6727FFEBB700583A6E /* PHAssetCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAssetCollection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +68,16 @@
 			children = (
 				0C528F0F27FF107100583A6E /* AppDelegate.swift */,
 				0C528F1127FF107100583A6E /* SceneDelegate.swift */,
-				0C528F2527FF10EB00583A6E /* HomeViewController.swift */,
 				0C528F2727FF115A00583A6E /* MainViewController.swift */,
+				0C528F5F27FFD4AE00583A6E /* CustromCollectionViewCell.swift */,
+				0C528F6127FFD7E200583A6E /* UIImageView+Extension.swift */,
 				0C528F1527FF107100583A6E /* Main.storyboard */,
 				0C528F1827FF107200583A6E /* Assets.xcassets */,
 				0C528F1A27FF107200583A6E /* LaunchScreen.storyboard */,
 				0C528F1D27FF107200583A6E /* Info.plist */,
+				0C528F6327FFEB9900583A6E /* PHAsset.swift */,
+				0C528F6527FFEBAB00583A6E /* PHPhotoLibrary.swift */,
+				0C528F6727FFEBB700583A6E /* PHAssetCollection.swift */,
 			);
 			path = UIImagePicker;
 			sourceTree = "<group>";
@@ -141,10 +153,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C528F2627FF10EB00583A6E /* HomeViewController.swift in Sources */,
+				0C528F6427FFEB9900583A6E /* PHAsset.swift in Sources */,
+				0C528F6227FFD7E200583A6E /* UIImageView+Extension.swift in Sources */,
+				0C528F6027FFD4AE00583A6E /* CustromCollectionViewCell.swift in Sources */,
 				0C528F1027FF107100583A6E /* AppDelegate.swift in Sources */,
 				0C528F1227FF107100583A6E /* SceneDelegate.swift in Sources */,
 				0C528F2827FF115A00583A6E /* MainViewController.swift in Sources */,
+				0C528F6827FFEBB700583A6E /* PHAssetCollection.swift in Sources */,
+				0C528F6627FFEBAB00583A6E /* PHPhotoLibrary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +310,7 @@
 				DEVELOPMENT_TEAM = Y89LJ6BC92;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UIImagePicker/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = require;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -322,6 +339,7 @@
 				DEVELOPMENT_TEAM = Y89LJ6BC92;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UIImagePicker/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = require;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
