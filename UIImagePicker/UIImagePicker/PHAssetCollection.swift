@@ -22,6 +22,5 @@ extension PHAssetCollection {
         let assets = PHAsset.fetchAssets(in: self, options: nil)
         return assets.count > 0
     }
-    
 }
 

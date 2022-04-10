@@ -18,6 +18,7 @@
 		0C528F6427FFEB9900583A6E /* PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C528F6327FFEB9900583A6E /* PHAsset.swift */; };
 		0C528F6627FFEBAB00583A6E /* PHPhotoLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C528F6527FFEBAB00583A6E /* PHPhotoLibrary.swift */; };
 		0C528F6827FFEBB700583A6E /* PHAssetCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C528F6727FFEBB700583A6E /* PHAssetCollection.swift */; };
+		0C528F6A28028B1D00583A6E /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C528F6928028B1D00583A6E /* UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		0C528F6327FFEB9900583A6E /* PHAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAsset.swift; sourceTree = "<group>"; };
 		0C528F6527FFEBAB00583A6E /* PHPhotoLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPhotoLibrary.swift; sourceTree = "<group>"; };
 		0C528F6727FFEBB700583A6E /* PHAssetCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAssetCollection.swift; sourceTree = "<group>"; };
+		0C528F6928028B1D00583A6E /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		0C528F0E27FF107100583A6E /* UIImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				0C528F6B28028B2900583A6E /* Extension */,
 				0C528F0F27FF107100583A6E /* AppDelegate.swift */,
 				0C528F1127FF107100583A6E /* SceneDelegate.swift */,
 				0C528F2727FF115A00583A6E /* MainViewController.swift */,
@@ -78,8 +81,16 @@
 				0C528F6327FFEB9900583A6E /* PHAsset.swift */,
 				0C528F6527FFEBAB00583A6E /* PHPhotoLibrary.swift */,
 				0C528F6727FFEBB700583A6E /* PHAssetCollection.swift */,
+				0C528F6928028B1D00583A6E /* UIView.swift */,
 			);
 			path = UIImagePicker;
+			sourceTree = "<group>";
+		};
+		0C528F6B28028B2900583A6E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +171,7 @@
 				0C528F1227FF107100583A6E /* SceneDelegate.swift in Sources */,
 				0C528F2827FF115A00583A6E /* MainViewController.swift in Sources */,
 				0C528F6827FFEBB700583A6E /* PHAssetCollection.swift in Sources */,
+				0C528F6A28028B1D00583A6E /* UIView.swift in Sources */,
 				0C528F6627FFEBAB00583A6E /* PHPhotoLibrary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
