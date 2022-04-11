@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
     private var fetchCollection: PHAssetCollection?
     private var albums: [PHAssetCollection] = []
     private var selectedImage: [UIImage]?
+    var allPhotos: PHFetchResult<PHAsset>?
     
 //    private var selectedAssetCollection
     
@@ -41,7 +42,11 @@ class MainViewController: UIViewController {
 //        popluatePhotos()
         
         getPermissionforPhoto { status in
-//            guard
+            guard status else { return }
+            self.fetchAssets()
+            DispatchQueue.main.async {
+                self.bottomCollectionView.reloadData()
+            }
         }
             
         
@@ -61,15 +66,12 @@ class MainViewController: UIViewController {
       }
     }
     
-
-//
-//        PHPhotoLibrary.requestAuthorization { status in
-//            if status == .authorized {
-//                let resultCollection = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: nil)
-//                print(resultCollection.count)
-//            }
-//        }
+    func fetchAssets() {
+        let allPhotosOptions = PHFetchOptions()
+        allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "creationData", ascending: false)]
+        allPhotos = PHAsset.fetchAssets(with: allPhotosOptions)
     }
+    
     
     private func popluatePhotos() {
         PHPhotoLibrary.requestAuthorization { status in
@@ -88,13 +90,13 @@ class MainViewController: UIViewController {
         }
     }
     
-    private func checkAuthorizationStatus() {
-        PHPhotoLibrary.checkAuthorizationStatus {
-            if $0 {
-                self.fetchAlbums()
-            }
-        }
-    }
+//    private func checkAuthorizationStatus() {
+//        PHPhotoLibrary.checkAuthorizationStatus {
+//            if $0 {
+//                self.fetchAlbums()
+//            }
+//        }
+//    }
     
     private func fetchCollectionFromGallery() {
         
@@ -131,7 +133,7 @@ extension MainViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allAssets.count
+        return allPhotos?.count ?? 3
     }
     
     //⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️
