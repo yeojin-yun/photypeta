@@ -1,0 +1,10 @@
+
+disabled_rules:
+
+included:
+  
+excluded:
+  - Pods
+  - HomeTap/AppDelegate.swift
+  - HomeTap/SceneDelegate.swift
+

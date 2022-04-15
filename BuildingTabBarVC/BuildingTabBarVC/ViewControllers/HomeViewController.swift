@@ -91,11 +91,9 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (collectionView == bottomCollectionView) {
             return allAssetFromLibrary.count
-        } else if (collectionView == topCollectionView) {
-            return 5
-        }
+        } 
+        return 5
     }
-    
     //🟠 셀에 표시될 데이터 - 일단 나오지만, Collection이 아니라 전체 데이터를 가져온 듯함
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
