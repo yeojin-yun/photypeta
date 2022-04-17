@@ -17,7 +17,6 @@ class HomeTapViewController: UIViewController {
     var selectedImages: [UIImage] = []
     private var selection = [String: PHPickerResult]()
     private var selectedAssetIdentifiers = [String]()
-    private var selectedAssetIdentifierIterator: IndexingIterator<[String]>?
     private var currentAssetIdentifier: String?
     
     var images: [UIImage] = [] {
@@ -51,8 +50,7 @@ extension HomeTapViewController {
         configuration.filter = filter
         configuration.preferredAssetRepresentationMode = .current
         configuration.selection = .ordered
-        configuration.selectionLimit = 5
-        
+        configuration.selectionLimit = 3
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
         picker.modalPresentationStyle = .fullScreen
@@ -63,14 +61,22 @@ extension HomeTapViewController {
 extension HomeTapViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         dismiss(animated: true)
+
+    
+        if results.count > 0 {
+            let alert = UIAlertController(title: "업로드 하겠습니다.", message: "title", preferredStyle: .alert)
+            let action = UIAlertAction(title: "확인", style: .default)
+            alert.addAction(action)
+            present(alert, animated: true)
+        }
         
         let identifiers = results.compactMap(\.assetIdentifier)
         let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil)
-        fetchResult.enumerateObjects { (asset, index, stop) -> Void in
+        fetchResult.enumerateObjects { (asset, index, _) -> Void in
             PHImageManager.default().requestImage(for: asset,
                                                   targetSize: CGSize.init(width: 100, height: 100),
                                                   contentMode: PHImageContentMode.aspectFill,
-                                                  options: nil) { (image: UIImage?, _: [AnyHashable : Any]?) in
+                                                  options: nil) { (image: UIImage?, _: [AnyHashable: Any]?) in
                 guard let image = image else { return }
                 self.images.append(image)
             }
@@ -79,8 +85,8 @@ extension HomeTapViewController: PHPickerViewControllerDelegate {
         firstImage.image = self.images[0]
         secondImage.image = self.images[1]
         thirdImage.image = self.images[2]
-        forthImage.image = self.images[3]
-        fifthImage.image = self.images[4]
+//        forthImage.image = self.images[3]
+//        fifthImage.image = self.images[4]
         currentImageView.image = firstImage.image
     }
 }

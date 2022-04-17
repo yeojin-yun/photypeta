@@ -17,6 +17,7 @@
 		0C82EF2A2807994200752C29 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 0C82EF292807994200752C29 /* .swiftlint.yml */; };
 		0C82EF2C2809309600752C29 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C82EF2B2809309600752C29 /* TestViewController.swift */; };
 		0C82EF2E28093EB500752C29 /* RedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C82EF2D28093EB500752C29 /* RedViewController.swift */; };
+		0C82EF322809588400752C29 /* PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C82EF312809588400752C29 /* PHAsset.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		0C82EF292807994200752C29 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0C82EF2B2809309600752C29 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		0C82EF2D28093EB500752C29 /* RedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedViewController.swift; sourceTree = "<group>"; };
+		0C82EF312809588400752C29 /* PHAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAsset.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				0C82EF0F2806E19200752C29 /* AppDelegate.swift */,
 				0C82EF112806E19200752C29 /* SceneDelegate.swift */,
 				0C82EF232806E1E600752C29 /* HomeTapViewController.swift */,
+				0C82EF312809588400752C29 /* PHAsset.swift */,
 				0C82EF152806E19200752C29 /* Main.storyboard */,
 				0C82EF182806E19300752C29 /* Assets.xcassets */,
 				0C82EF1A2806E19300752C29 /* LaunchScreen.storyboard */,
@@ -178,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C82EF322809588400752C29 /* PHAsset.swift in Sources */,
 				0C82EF2E28093EB500752C29 /* RedViewController.swift in Sources */,
 				0C82EF242806E1E600752C29 /* HomeTapViewController.swift in Sources */,
 				0C82EF102806E19200752C29 /* AppDelegate.swift in Sources */,
