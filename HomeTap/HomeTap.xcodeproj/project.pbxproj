@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C4921FB280BE5330008AAE6 /* SelectedImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4921FA280BE5330008AAE6 /* SelectedImageCollectionViewCell.swift */; };
 		0C82EF102806E19200752C29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C82EF0F2806E19200752C29 /* AppDelegate.swift */; };
 		0C82EF122806E19200752C29 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C82EF112806E19200752C29 /* SceneDelegate.swift */; };
 		0C82EF172806E19200752C29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C82EF152806E19200752C29 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C4921FA280BE5330008AAE6 /* SelectedImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		0C82EF0C2806E19200752C29 /* HomeTap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeTap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C82EF0F2806E19200752C29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C82EF112806E19200752C29 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				0C82EF1D2806E19300752C29 /* Info.plist */,
 				0C82EF2B2809309600752C29 /* TestViewController.swift */,
 				0C82EF2D28093EB500752C29 /* RedViewController.swift */,
+				0C4921FA280BE5330008AAE6 /* SelectedImageCollectionViewCell.swift */,
 			);
 			path = HomeTap;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				0C82EF242806E1E600752C29 /* HomeTapViewController.swift in Sources */,
 				0C82EF102806E19200752C29 /* AppDelegate.swift in Sources */,
 				0C82EF2C2809309600752C29 /* TestViewController.swift in Sources */,
+				0C4921FB280BE5330008AAE6 /* SelectedImageCollectionViewCell.swift in Sources */,
 				0C82EF122806E19200752C29 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
