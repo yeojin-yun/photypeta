@@ -86,27 +86,23 @@ extension HomeTapViewController: PHPickerViewControllerDelegate {
                 self.images.append(image)
             }
         }
-        print("🟠에셋이 append 된 후 숫자: \(self.images.count)")
-        firstImage.image = self.images[0]
-        firstImage.contentMode = .scaleToFill
-        secondImage.image = self.images[1]
-        secondImage.contentMode = .scaleToFill
-        thirdImage.image = self.images[2]
-        thirdImage.contentMode = .scaleToFill
-//        forthImage.image = self.images[3]
-//        fifthImage.image = self.images[4]
-        currentImageView.image = firstImage.image
+        selectedImageCollection?.reloadData()
     }
 }
 
 // MARK: - UICollectionViewDataSource
 extension HomeTapViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if images.count > 0, images.count < 6 {
+            return images.count
+        }
         return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectedImageCollectionViewCell.identifier, for: indexPath) as? SelectedImageCollectionViewCell else { return }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectedImageCollectionViewCell.identifier, for: indexPath) as? SelectedImageCollectionViewCell else { fatalError("Missed Cell") }
+        print(indexPath.item)
+        //cell.selectedImage.image = images[indexPath.item]
         return cell
     }
 }
@@ -119,13 +115,9 @@ extension HomeTapViewController: UICollectionViewDelegate {
 // MARK: - Setup CollectionView
 extension HomeTapViewController {
     func configureCollectionView() {
-        setUpBottomCollectionView()
-    }
-
-    func setUpBottomCollectionView() {
         let downLayout = UICollectionViewFlowLayout()
         downLayout.scrollDirection = .vertical
-        selectedImageCollection = UICollectionView(frame: CGRect(x: 0, y: 220, width: view.frame.size.width, height: 600), collectionViewLayout: downLayout)
+        selectedImageCollection = UICollectionView(frame: .zero, collectionViewLayout: downLayout)
         guard let selectedImageCollection = selectedImageCollection else { return }
         selectedImageCollection.register(SelectedImageCollectionViewCell.self, forCellWithReuseIdentifier: SelectedImageCollectionViewCell.identifier)
         selectedImageCollection.delegate = self
@@ -145,11 +137,6 @@ extension HomeTapViewController {
         mainLbl.text = "당신의 추억을 간직해보세요"
 
         currentImageView.image = UIImage(systemName: "scribble")
-//        firstImage.image = UIImage(systemName: "house")
-//        secondImage.image = UIImage(systemName: "pencil")
-//        thirdImage.image = UIImage(systemName: "lasso")
-//        forthImage.image = UIImage(systemName: "trash")
-//        fifthImage.image = UIImage(systemName: "folder")
         
         uploadButton.setTitle("사진선택 및 업로드", for: .normal)
         uploadButton.setTitleColor(.black, for: .normal)
@@ -159,12 +146,6 @@ extension HomeTapViewController {
         uploadButton.addTarget(self, action: #selector(uploadButtonTapped(_:)), for: .touchUpInside)
     }
     final private func setConstraints() {
-//        let imageStackView = UIStackView(arrangedSubviews:
-//                                            [firstImage, secondImage, thirdImage, forthImage, fifthImage])
-//        imageStackView.axis = .horizontal
-//        imageStackView.distribution = .fillEqually
-//        imageStackView.spacing = 0
-//
         [mainLbl, currentImageView, uploadButton].forEach {
             view.addSubview($0)
         }
@@ -188,18 +169,11 @@ extension HomeTapViewController {
             sk.top.equalTo(currentImageView.snp.bottom).offset(60)
             sk.leading.trailing.equalTo(currentImageView)
             //sk.bottom.equalToSuperview().offset(-80)
-            sk.height.equalTo(70)
+            sk.height.equalTo(150)
         }
-        
-        
-//        imageStackView.snp.makeConstraints { sk in
-//            sk.top.equalTo(currentImageView.snp.bottom).offset(60)
-//            sk.leading.trailing.equalTo(currentImageView)
-//            //sk.bottom.equalToSuperview().offset(-80)
-//            sk.height.equalTo(70)
-//        }
+
         uploadButton.snp.makeConstraints { sk in
-            sk.top.equalTo(selectedImageCollection?.snp.bottom).offset(25)
+            sk.bottom.equalTo(self.view).offset(-60)
             sk.leading.trailing.equalTo(currentImageView)
         }
     }

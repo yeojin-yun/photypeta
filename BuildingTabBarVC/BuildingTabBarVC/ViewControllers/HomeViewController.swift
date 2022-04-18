@@ -164,20 +164,14 @@ extension HomeViewController: UICollectionViewDelegate {
 }
 
 
-
+//MARK: -UICollectionViewDelegateFlowLayout
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
-
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         0
     }
-    
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         0
     }
-    
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if (collectionView == bottomCollectionView) {
             let size = CGSize(width: view.bounds.size.width/3, height: view.bounds.size.width/3)
@@ -243,6 +237,5 @@ extension HomeViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)
-        
     }
 }
