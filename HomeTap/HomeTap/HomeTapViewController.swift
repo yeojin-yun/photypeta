@@ -86,6 +86,7 @@ extension HomeTapViewController: PHPickerViewControllerDelegate {
                 self.images.append(image)
             }
         }
+        print(images.count)
         selectedImageCollection?.reloadData()
     }
 }
@@ -101,8 +102,10 @@ extension HomeTapViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectedImageCollectionViewCell.identifier, for: indexPath) as? SelectedImageCollectionViewCell else { fatalError("Missed Cell") }
-        print(indexPath.item)
-        //cell.selectedImage.image = images[indexPath.item]
+        print("count: \(indexPath.item)")
+        if images.count > 0 {
+            cell.selectedImage.image = images[indexPath.item]
+        }
         return cell
     }
 }
