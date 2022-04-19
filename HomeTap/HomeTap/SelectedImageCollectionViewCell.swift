@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 class SelectedImageCollectionViewCell: UICollectionViewCell {
     static let identifier = "SelectedImageCollectionViewCell"
@@ -25,6 +26,8 @@ class SelectedImageCollectionViewCell: UICollectionViewCell {
         selectedImage.clipsToBounds = true
         contentView.addSubview(selectedImage)
     }
+    
+
     
     override func layoutSubviews() {
         super.layoutSubviews()

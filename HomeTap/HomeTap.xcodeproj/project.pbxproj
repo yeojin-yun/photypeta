@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C3103FC280E89F20095B1F0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0C3103FB280E89F20095B1F0 /* SnapKit */; };
 		0C4921FB280BE5330008AAE6 /* SelectedImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4921FA280BE5330008AAE6 /* SelectedImageCollectionViewCell.swift */; };
+		0C737C54280D01D2003024FA /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0C737C53280D01D2003024FA /* Realm */; };
+		0C737C56280D01D2003024FA /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0C737C55280D01D2003024FA /* RealmSwift */; };
 		0C82EF102806E19200752C29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C82EF0F2806E19200752C29 /* AppDelegate.swift */; };
 		0C82EF122806E19200752C29 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C82EF112806E19200752C29 /* SceneDelegate.swift */; };
 		0C82EF172806E19200752C29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C82EF152806E19200752C29 /* Main.storyboard */; };
@@ -42,6 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C737C56280D01D2003024FA /* RealmSwift in Frameworks */,
+				0C3103FC280E89F20095B1F0 /* SnapKit in Frameworks */,
+				0C737C54280D01D2003024FA /* Realm in Frameworks */,
 				0C82EF272806E38D00752C29 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,14 +78,14 @@
 				0C82EF0F2806E19200752C29 /* AppDelegate.swift */,
 				0C82EF112806E19200752C29 /* SceneDelegate.swift */,
 				0C82EF232806E1E600752C29 /* HomeTapViewController.swift */,
-				0C82EF312809588400752C29 /* PHAsset.swift */,
+				0C4921FA280BE5330008AAE6 /* SelectedImageCollectionViewCell.swift */,
 				0C82EF152806E19200752C29 /* Main.storyboard */,
 				0C82EF182806E19300752C29 /* Assets.xcassets */,
 				0C82EF1A2806E19300752C29 /* LaunchScreen.storyboard */,
 				0C82EF1D2806E19300752C29 /* Info.plist */,
 				0C82EF2B2809309600752C29 /* TestViewController.swift */,
 				0C82EF2D28093EB500752C29 /* RedViewController.swift */,
-				0C4921FA280BE5330008AAE6 /* SelectedImageCollectionViewCell.swift */,
+				0C82EF312809588400752C29 /* PHAsset.swift */,
 			);
 			path = HomeTap;
 			sourceTree = "<group>";
@@ -103,6 +109,9 @@
 			name = HomeTap;
 			packageProductDependencies = (
 				0C82EF262806E38D00752C29 /* SnapKit */,
+				0C737C53280D01D2003024FA /* Realm */,
+				0C737C55280D01D2003024FA /* RealmSwift */,
+				0C3103FB280E89F20095B1F0 /* SnapKit */,
 			);
 			productName = HomeTap;
 			productReference = 0C82EF0C2806E19200752C29 /* HomeTap.app */;
@@ -134,6 +143,8 @@
 			mainGroup = 0C82EF032806E19200752C29;
 			packageReferences = (
 				0C82EF252806E38D00752C29 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				0C737C52280D01D2003024FA /* XCRemoteSwiftPackageReference "realm-swift" */,
+				0C3103FA280E89F20095B1F0 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 0C82EF0D2806E19200752C29 /* Products */;
 			projectDirPath = "";
@@ -414,6 +425,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0C3103FA280E89F20095B1F0 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		0C737C52280D01D2003024FA /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.25.1;
+			};
+		};
 		0C82EF252806E38D00752C29 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -425,6 +452,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0C3103FB280E89F20095B1F0 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0C82EF252806E38D00752C29 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		0C737C53280D01D2003024FA /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0C737C52280D01D2003024FA /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		0C737C55280D01D2003024FA /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0C737C52280D01D2003024FA /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		0C82EF262806E38D00752C29 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0C82EF252806E38D00752C29 /* XCRemoteSwiftPackageReference "SnapKit" */;
