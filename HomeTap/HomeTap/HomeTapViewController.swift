@@ -27,13 +27,13 @@ class HomeTapViewController: UIViewController {
     
     var images: [UIImage] = [] {
         didSet {
-            //print("2. 선택된 이미지 배열 변경: \(images.count)")
+            print("2. 선택된 이미지 배열 변경: \(images.count)")
         }
     }
     
     var recommendedImages: [UIImage] = [] {
         didSet {
-            print("추천된 이미지 배열 변경: \(recommendedImages.count)")
+            //print("추천된 이미지 배열 변경: \(recommendedImages.count)")
         }
     }
 
@@ -154,6 +154,28 @@ extension HomeTapViewController {
             }
         }
     }
+    
+    func newTest() {
+        guard let assetIdentifier = selectedAssetIdentifierIterator?.next() else { return }
+        print("🔵5. assetIdentifier: \(assetIdentifier)")
+        currentAssetIdentifier = assetIdentifier
+        print("6. currentAssetIdentifier: \(currentAssetIdentifier)")
+        
+        let itemProvider = selection[assetIdentifier]!.itemProvider
+        //print("메서드 속 itemProvider: \(itemProvider)")
+        if itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                DispatchQueue.main.async {
+                    if let image = image as? UIImage {
+                        self.images.append(image)
+                        self.selectedImageCollection?.reloadData()
+                    }
+                }
+            }
+        }
+    }
+    
+    
 }
 
 extension HomeTapViewController: PHPickerViewControllerDelegate {
@@ -190,9 +212,16 @@ extension HomeTapViewController: PHPickerViewControllerDelegate {
 //        print("6. currentAssetIdentifier: \(currentAssetIdentifier)")
         
         if results.count > 0 {
-            test(results: results)
-            images.removeAll()
+            newTest()
+            //test(results: results)
+            //images.removeAll()
         }
+        for result in results {
+            let idStringArray = [result.assetIdentifier!]
+            
+            
+        }
+        
     }
 }
 
