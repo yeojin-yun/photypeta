@@ -5,6 +5,9 @@
 //  Created by 순진이 on 2022/04/13.
 //
 
+//images 배열의 순서가 바뀌는 문제 -> 🔴부분에서 순서가 바뀌는 거 같음(해당 동작이 비동기로 동작하는지 볼 것)
+//recomendedImages의 추천 갯수를 5개로 제한하기 -> if로 제한 걸기(count가 5 이하까지만 추가될 수 있도록) + 또 다른 필터(생성일자)가 필요할 듯
+
 import UIKit
 import SnapKit
 import Photos
@@ -24,13 +27,13 @@ class HomeTapViewController: UIViewController {
     
     var images: [UIImage] = [] {
         didSet {
-            //print("선택된 이미지 배열 변경")
+            //print("2. 선택된 이미지 배열 변경: \(images.count)")
         }
     }
     
     var recommendedImages: [UIImage] = [] {
         didSet {
-            //print("추천된 이미지 배열 변경")
+            print("추천된 이미지 배열 변경: \(recommendedImages.count)")
         }
     }
 
@@ -52,17 +55,20 @@ class HomeTapViewController: UIViewController {
                 //fetchAsset을 Asset 배열로 만들어야 함 (현재는 PHFetchResult<PHAsset>)
                 let fetchAsset = PHAsset.fetchAssets(with: .image, options: nil)
                 fetchAsset.enumerateObjects { asset, index, _ in
-                    //PHAsset을 Image로 바꿔줄 필요가 있음
-                    phImageManager.requestImage(for: asset, targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFill, options: nil) { (image: UIImage?, info) in
-                        let isDegraded = (info?[PHImageResultIsDegradedKey] as? Bool) ?? false
-                        if isDegraded { return }
-                        guard let image = image else { return }
-                        self.recommendedImages.append(image)
-                        //print("클로저 안에 갯수는: \(self.recommendedImages.count)")
+                    if asset.isFavorite {
+                        //PHAsset을 Image로 바꿔줄 필요가 있음
+                        phImageManager.requestImage(for: asset, targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFill, options: nil) { (image: UIImage?, info) in
+                            let isDegraded = (info?[PHImageResultIsDegradedKey] as? Bool) ?? false
+                            if isDegraded { return }
+                            guard let image = image else { return }
+                            
+                            self.recommendedImages.append(image)
+                            DispatchQueue.main.async {
+                                self.selectedImageCollection?.reloadData()
+                            }
+                        }
                     }
                 }
-                print(self.phassetArray.count) // 6
-                
             }
         }
     }
@@ -87,28 +93,65 @@ extension HomeTapViewController {
         present(picker, animated: true)
     }
     
-    func callItemProvider() {
+//    func callItemProvider() {
+//        guard let assetIdentifier = selectedAssetIdentifierIterator?.next() else { return }
+//        currentAssetIdentifier = assetIdentifier
+//
+//        let progress: Progress?
+//        let itemProvider = selection[assetIdentifier]!.itemProvider
+//
+//        if itemProvider.canLoadObject(ofClass: UIImage.self) {
+//            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+//                DispatchQueue.main.async {
+//                    self?.handleCompletion(assetIdentifier: assetIdentifier, object: image, error: error)
+//                }
+//            }
+//        }
+//
+//    }
+//
+//
+//    func handleCompletion(assetIdentifier: String, object: Any?, error: Error? = nil) {
+//        guard currentAssetIdentifier == assetIdentifier else { return }
+//        if let image = object as? UIImage {
+//
+//        }
+//    }
+    
+    func test(results: [PHPickerResult]) {
         guard let assetIdentifier = selectedAssetIdentifierIterator?.next() else { return }
+        print("5. assetIdentifier: \(assetIdentifier)")
+        
         currentAssetIdentifier = assetIdentifier
+        //print("6. currentAssetIdentifier: \(currentAssetIdentifier)")
         
-        let progress: Progress?
-        let itemProvider = selection[assetIdentifier]!.itemProvider
-        
-        if itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                DispatchQueue.main.async {
-                    self?.handleCompletion(assetIdentifier: assetIdentifier, object: image, error: error)
+        let identifiers = results.compactMap(\.assetIdentifier)
+        let options = PHImageRequestOptions()
+        options.isSynchronous = true
+        print("🟠identifiers: \(identifiers)")
+        let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil)
+        print("🔵fetchResult: \(fetchResult)")
+        fetchResult.enumerateObjects { (asset, index, _) -> Void in
+            print("🔴asset: \(asset), index: \(index)") //순서 바뀌는 부분
+            PHImageManager.default().requestImage(for: asset,
+                                                  targetSize: CGSize.init(width: 360, height: 360),
+                                                  contentMode: PHImageContentMode.aspectFill,
+                                                  options: nil) { (image: UIImage?, info) in
+                let isDegraded = (info?[PHImageResultIsDegradedKey] as? Bool) ?? false
+                if isDegraded { return }
+                guard let image = image else { return }
+                print("1. 이미지\(image)")
+                self.images.append(image)
+                if !self.images.isEmpty {
+                    //print("3. 배열에 내용 있음")
                 }
+                
+                DispatchQueue.main.async {
+                    self.selectedImageCollection?.reloadData()
+                    //print("불리는 시점 확인")
+                }
+                
             }
-        }
-        
-    }
-    
-    
-    func handleCompletion(assetIdentifier: String, object: Any?, error: Error? = nil) {
-        guard currentAssetIdentifier == assetIdentifier else { return }
-        if let image = object as? UIImage {
-           
         }
     }
 }
@@ -118,46 +161,37 @@ extension HomeTapViewController: PHPickerViewControllerDelegate {
         dismiss(animated: true)
         
         
-        let existingSelection = self.selection
-        print(existingSelection)
+        let exisitingSelection = self.selection
+        //print("1. exisitingSelection: \(exisitingSelection)")//첫 번째 선택일 때는 빈배열
+        
         var newSelection = [String: PHPickerResult]()
+        //print("2. newSelection: \(newSelection)")//첫 번째 선택일 때는 빈배열
+        
         for result in results {
             let identifier = result.assetIdentifier!
-            print(identifier)
-            newSelection[identifier] = existingSelection[identifier] ?? result
-            print("newSelection: \(newSelection)")
+            newSelection[identifier] = exisitingSelection[identifier] ?? result
+            //print("번외1 : \(identifier)")
         }
+        //print("1-1. exisitingSelection: \(exisitingSelection)")//첫 번째 선택일 때는 빈배열
+        //print("2-2. newSelection: \(newSelection)")
 
         // Track the selection in case the user deselects it later.
         selection = newSelection
         selectedAssetIdentifiers = results.map(\.assetIdentifier!)
+        //print("3. selectedAssetIdentifiers: \(selectedAssetIdentifiers)")
+
         selectedAssetIdentifierIterator = selectedAssetIdentifiers.makeIterator()
+        //print("4. selectedAssetIdentifierIterator: \(selectedAssetIdentifierIterator)")
 
-        if results.count > 0 {
-            let alert = UIAlertController(title: "업로드 하겠습니다.", message: "", preferredStyle: .alert)
-            let action = UIAlertAction(title: "확인", style: .default)
-            alert.addAction(action)
-            present(alert, animated: true)
-        }
+//        guard let assetIdentifier = selectedAssetIdentifierIterator?.next() else { return }
+//        print("5. assetIdentifier: \(assetIdentifier)")
+//
+//        currentAssetIdentifier = assetIdentifier
+//        print("6. currentAssetIdentifier: \(currentAssetIdentifier)")
         
-        let identifiers = results.compactMap(\.assetIdentifier)
-        let options = PHImageRequestOptions()
-        options.isSynchronous = true
-
-        let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil)
-        fetchResult.enumerateObjects { (asset, index, _) -> Void in
-            PHImageManager.default().requestImage(for: asset,
-                                                  targetSize: CGSize.init(width: 360, height: 360),
-                                                  contentMode: PHImageContentMode.aspectFill,
-                                                  options: nil) { (image: UIImage?, info) in
-                let isDegraded = (info?[PHImageResultIsDegradedKey] as? Bool) ?? false
-                if isDegraded { return }
-                guard let image = image else { return }
-                self.images.append(image)
-                DispatchQueue.main.async {
-                    self.selectedImageCollection?.reloadData()
-                }
-            }
+        if results.count > 0 {
+            test(results: results)
+            images.removeAll()
         }
     }
 }
@@ -166,16 +200,19 @@ extension HomeTapViewController: PHPickerViewControllerDelegate {
 extension HomeTapViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if images.count > 0, images.count < 6 {
+            print("collection cell 갯수: \(images.count)")
             return images.count
+
         }
-        return 5
+        return recommendedImages.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectedImageCollectionViewCell.identifier, for: indexPath) as? SelectedImageCollectionViewCell else { fatalError("Missed Cell") }
-        print("count: \(indexPath.item)")
         if images.count > 0 {
             cell.selectedImage.image = images[indexPath.item]
+        } else {
+            cell.selectedImage.image = recommendedImages[indexPath.item]
         }
         return cell
     }
