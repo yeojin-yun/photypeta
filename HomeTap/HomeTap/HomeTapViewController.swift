@@ -16,13 +16,13 @@ import PhotosUI
 class HomeTapViewController: UIViewController {
     let mainLbl = UILabel() // 감성 문구 넣을 레이블
     let currentImageView = UIImageView() // 가운데 pagecontrol로 넘어갈 이미지
-
+    
     var selectedImages: [UIImage] = []
     private var selection = [String: PHPickerResult]()
     private var selectedAssetIdentifiers = [String]()
     private var selectedAssetIdentifierIterator: IndexingIterator<[String]>?
     private var currentAssetIdentifier: String?
-
+    
     private var selectedImageCollection: UICollectionView?
     
     var images: [UIImage] = [] {
@@ -35,11 +35,12 @@ class HomeTapViewController: UIViewController {
         didSet {
             //print("추천된 이미지 배열 변경: \(recommendedImages.count)")
         }
+
     }
-
+    
     var phassetArray: [PHAsset] = []
-
-
+    
+    
     let uploadButton = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +79,7 @@ extension HomeTapViewController {
     @objc func uploadButtonTapped(_ sender: UIButton) {
         presentPicker(filter: PHPickerFilter.images)
     }
-
+    
     private func presentPicker(filter: PHPickerFilter?) {
         var configuration = PHPickerConfiguration(photoLibrary: .shared())
         configuration.filter = .images
@@ -86,37 +87,13 @@ extension HomeTapViewController {
         configuration.selection = .ordered
         configuration.selectionLimit = 5
         configuration.preselectedAssetIdentifiers = selectedAssetIdentifiers
-
+        
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
         picker.modalPresentationStyle = .fullScreen
         present(picker, animated: true)
     }
-    
-//    func callItemProvider() {
-//        guard let assetIdentifier = selectedAssetIdentifierIterator?.next() else { return }
-//        currentAssetIdentifier = assetIdentifier
-//
-//        let progress: Progress?
-//        let itemProvider = selection[assetIdentifier]!.itemProvider
-//
-//        if itemProvider.canLoadObject(ofClass: UIImage.self) {
-//            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-//                DispatchQueue.main.async {
-//                    self?.handleCompletion(assetIdentifier: assetIdentifier, object: image, error: error)
-//                }
-//            }
-//        }
-//
-//    }
-//
-//
-//    func handleCompletion(assetIdentifier: String, object: Any?, error: Error? = nil) {
-//        guard currentAssetIdentifier == assetIdentifier else { return }
-//        if let image = object as? UIImage {
-//
-//        }
-//    }
+
     
     func test(results: [PHPickerResult]) {
         guard let assetIdentifier = selectedAssetIdentifierIterator?.next() else { return }
@@ -175,7 +152,64 @@ extension HomeTapViewController {
         }
     }
     
+    func newFunction(result: [String]) {
+        var imgArr: [UIImage] = []
+        print("result: \(result)")
+        result.forEach { identifier in
+            let itemProvider = selection[identifier]!.itemProvider
+            if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                print("new identifier: \(identifier)")
+                
+                itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                    
+                    if let image = image as? UIImage {
+                        DispatchQueue.main.async {
+                            print("identifier: \(identifier)")
+                            imgArr.append(image)
+                            print("❌❌❌❌\(imgArr)")
+                            self.images = imgArr
+                            self.selectedImageCollection?.reloadData()
+                        }
+                    }
+                }
+                print("newenw identifier: \(identifier)")
+            }
+        }
+    }
     
+    func newFunction2(result: String) {
+        guard let assetIdentifier = selectedAssetIdentifierIterator?.next() else { return }
+        currentAssetIdentifier = assetIdentifier
+        var imgArr: [UIImage] = []
+        print("result: \(result)")
+        let itemProvider = selection[result]!.itemProvider
+        if itemProvider.canLoadObject(ofClass: UIImage.self) {
+            print("new identifier: \(result)")
+            
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                DispatchQueue.main.async {
+                    print(image) //옵셔널
+                    self?.handlerCompletion(assetIdentifier: result, object: image, error: error)
+                    
+                }
+                
+            }
+            print("newenw identifier: \(result)")
+        }
+        
+    }
+    
+    func handlerCompletion(assetIdentifier: String, object: Any?, error: Error? = nil) {
+        print("불리나")
+        guard currentAssetIdentifier == assetIdentifier else { return }
+        if let image = object as? UIImage {
+            print("불리나22") //안불림!!!!!!!!!!
+            //            images.append(image)
+            //            DispatchQueue.main.sync {
+            //                selectedImageCollection?.reloadData()
+            //            }
+        }
+    }
 }
 
 extension HomeTapViewController: PHPickerViewControllerDelegate {
@@ -192,35 +226,36 @@ extension HomeTapViewController: PHPickerViewControllerDelegate {
         for result in results {
             let identifier = result.assetIdentifier!
             newSelection[identifier] = exisitingSelection[identifier] ?? result
+            newFunction2(result: identifier)
             //print("번외1 : \(identifier)")
         }
         //print("1-1. exisitingSelection: \(exisitingSelection)")//첫 번째 선택일 때는 빈배열
         //print("2-2. newSelection: \(newSelection)")
-
+        
         // Track the selection in case the user deselects it later.
         selection = newSelection
         selectedAssetIdentifiers = results.map(\.assetIdentifier!)
         //print("3. selectedAssetIdentifiers: \(selectedAssetIdentifiers)")
-
+        
         selectedAssetIdentifierIterator = selectedAssetIdentifiers.makeIterator()
         //print("4. selectedAssetIdentifierIterator: \(selectedAssetIdentifierIterator)")
-
-//        guard let assetIdentifier = selectedAssetIdentifierIterator?.next() else { return }
-//        print("5. assetIdentifier: \(assetIdentifier)")
-//
-//        currentAssetIdentifier = assetIdentifier
-//        print("6. currentAssetIdentifier: \(currentAssetIdentifier)")
+        
+        
+        
+        //        guard let assetIdentifier = selectedAssetIdentifierIterator?.next() else { return }
+        //        print("5. assetIdentifier: \(assetIdentifier)")
+        //
+        //        currentAssetIdentifier = assetIdentifier
+        //        print("6. currentAssetIdentifier: \(currentAssetIdentifier)")
+        
+        
         
         if results.count > 0 {
-            newTest()
+            //newTest()
             //test(results: results)
             //images.removeAll()
         }
-        for result in results {
-            let idStringArray = [result.assetIdentifier!]
-            
-            
-        }
+        //selectedIdentifier를 넣으면 image 배열이 나오도록
         
     }
 }
@@ -231,11 +266,11 @@ extension HomeTapViewController: UICollectionViewDataSource {
         if images.count > 0, images.count < 6 {
             print("collection cell 갯수: \(images.count)")
             return images.count
-
+            
         }
         return recommendedImages.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectedImageCollectionViewCell.identifier, for: indexPath) as? SelectedImageCollectionViewCell else { fatalError("Missed Cell") }
         if images.count > 0 {
@@ -249,7 +284,7 @@ extension HomeTapViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension HomeTapViewController: UICollectionViewDelegate {
-
+    
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -283,9 +318,9 @@ extension HomeTapViewController {
     }
     final private func setAttributes() {
         mainLbl.text = "당신의 추억을 간직해보세요"
-
+        
         currentImageView.image = UIImage(systemName: "scribble")
-
+        
         uploadButton.setTitle("사진선택 및 업로드", for: .normal)
         uploadButton.setTitleColor(.black, for: .normal)
         uploadButton.backgroundColor = .lightGray
