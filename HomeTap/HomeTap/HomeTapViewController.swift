@@ -27,7 +27,10 @@ class HomeTapViewController: UIViewController {
     
     var images: [UIImage] = [] {
         didSet {
-            print("2. 선택된 이미지 배열 변경: \(images.count)")
+            DispatchQueue.main.async {
+                self.selectedImageCollection?.reloadData()
+            }
+            
         }
     }
     
@@ -35,7 +38,6 @@ class HomeTapViewController: UIViewController {
         didSet {
             //print("추천된 이미지 배열 변경: \(recommendedImages.count)")
         }
-
     }
     
     var phassetArray: [PHAsset] = []
@@ -143,10 +145,7 @@ extension HomeTapViewController {
         if itemProvider.canLoadObject(ofClass: UIImage.self) {
             itemProvider.loadObject(ofClass: UIImage.self) { image, error in
                 DispatchQueue.main.async {
-                    if let image = image as? UIImage {
-                        self.images.append(image)
-                        self.selectedImageCollection?.reloadData()
-                    }
+                    self.handlerCompletion(assetIdentifier: assetIdentifier, object: image)
                 }
             }
         }
@@ -161,20 +160,31 @@ extension HomeTapViewController {
                 print("new identifier: \(identifier)")
                 
                 itemProvider.loadObject(ofClass: UIImage.self) { image, error in
-                    
-                    if let image = image as? UIImage {
-                        DispatchQueue.main.async {
-                            print("identifier: \(identifier)")
-                            imgArr.append(image)
-                            print("❌❌❌❌\(imgArr)")
-                            self.images = imgArr
-                            self.selectedImageCollection?.reloadData()
-                        }
+                    DispatchQueue.main.async {
+                        self.handlerCompletion(assetIdentifier: identifier, object: image, error: error)
+                        self.selectedImageCollection?.reloadData()
                     }
+//                    if let image = image as? UIImage {
+//                        DispatchQueue.main.async {
+//                            handlerCompletion(assetIdentifier: identifier, object: <#T##Any?#>)
+////                            print("identifier: \(identifier)")
+////                            imgArr.append(image)
+////                            print("❌❌❌❌\(imgArr)")
+////                            self.images = imgArr
+////                            self.selectedImageCollection?.reloadData()
+//                        }
+//                    }
                 }
                 print("newenw identifier: \(identifier)")
             }
         }
+    }
+    
+    func handlerCompletion(assetIdentifier: String, object: Any?, error: Error? = nil) {
+        print("object 확인\(object)")
+        guard let image = object as? UIImage else { return }
+        images.append(image)
+        print("images 확인\(images)")
     }
     
     func newFunction2(result: String) {
@@ -190,26 +200,13 @@ extension HomeTapViewController {
                 DispatchQueue.main.async {
                     print(image) //옵셔널
                     self?.handlerCompletion(assetIdentifier: result, object: image, error: error)
-                    
                 }
-                
             }
             print("newenw identifier: \(result)")
         }
-        
     }
     
-    func handlerCompletion(assetIdentifier: String, object: Any?, error: Error? = nil) {
-        print("불리나")
-        guard currentAssetIdentifier == assetIdentifier else { return }
-        if let image = object as? UIImage {
-            print("불리나22") //안불림!!!!!!!!!!
-            //            images.append(image)
-            //            DispatchQueue.main.sync {
-            //                selectedImageCollection?.reloadData()
-            //            }
-        }
-    }
+
 }
 
 extension HomeTapViewController: PHPickerViewControllerDelegate {
@@ -226,8 +223,6 @@ extension HomeTapViewController: PHPickerViewControllerDelegate {
         for result in results {
             let identifier = result.assetIdentifier!
             newSelection[identifier] = exisitingSelection[identifier] ?? result
-            newFunction2(result: identifier)
-            //print("번외1 : \(identifier)")
         }
         //print("1-1. exisitingSelection: \(exisitingSelection)")//첫 번째 선택일 때는 빈배열
         //print("2-2. newSelection: \(newSelection)")
@@ -243,20 +238,61 @@ extension HomeTapViewController: PHPickerViewControllerDelegate {
         
         
         //        guard let assetIdentifier = selectedAssetIdentifierIterator?.next() else { return }
-        //        print("5. assetIdentifier: \(assetIdentifier)")
+//                print("5. assetIdentifier: \(assetIdentifier)")
         //
         //        currentAssetIdentifier = assetIdentifier
-        //        print("6. currentAssetIdentifier: \(currentAssetIdentifier)")
-        
-        
-        
-        if results.count > 0 {
-            //newTest()
-            //test(results: results)
-            //images.removeAll()
-        }
-        //selectedIdentifier를 넣으면 image 배열이 나오도록
-        
+//                print("6. currentAssetIdentifier: \(currentAssetIdentifier)")
+       
+//        if results.count > 0 {
+//            //newFunction(result: selectedAssetIdentifiers)
+//            //newTest()
+//            images.removeAll()
+//            for result in results {
+//                print("⭐️\(result)")
+//                let itemProvider = result.itemProvider
+//                if itemProvider.canLoadObject(ofClass: UIImage.self) {
+//                    itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, error) in
+//                        guard let image = image as? UIImage else { return }
+//                        self?.images.append(image)
+//                        DispatchQueue.main.async {
+//                            self?.selectedImageCollection?.reloadData()
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+        test(results: results)
+//        if images.count < 6 {
+//            
+//            let imageItems = results
+//                    .map { $0.itemProvider }
+//                    .filter { $0.canLoadObject(ofClass: UIImage.self) } // filter for possible UIImages
+//                
+//                let dispatchGroup = DispatchGroup()
+//                //var testimages = [UIImage]()
+//                
+//                for imageItem in imageItems {
+//                    dispatchGroup.enter() // signal IN
+//                    
+//                    imageItem.loadObject(ofClass: UIImage.self) { image, _ in
+//                        if let image = image as? UIImage {
+//                            self.images.append(image)
+//                            print("appen")
+//                            
+//                        }
+//                        dispatchGroup.leave() // signal OUT
+//                    }
+//                }
+//                
+//                // This is called at the end; after all signals are matched (IN/OUT)
+//                dispatchGroup.notify(queue: .main) {
+//                    print(self.images)
+//                    //self.images.removeAll()
+//                }
+//            print("시점")
+//            
+//        }
     }
 }
 
