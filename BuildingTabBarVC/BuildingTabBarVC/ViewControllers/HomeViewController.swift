@@ -151,8 +151,6 @@ extension HomeViewController: UICollectionViewDelegate {
                 }
             }
         }
-
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

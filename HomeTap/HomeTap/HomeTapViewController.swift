@@ -57,14 +57,16 @@ class HomeTapViewController: UIViewController {
                 let phImageManager = PHImageManager.default()
                 //fetchAsset을 Asset 배열로 만들어야 함 (현재는 PHFetchResult<PHAsset>)
                 let fetchAsset = PHAsset.fetchAssets(with: .image, options: nil)
+                print("fetchAsset: \(fetchAsset)")
                 fetchAsset.enumerateObjects { asset, index, _ in
+                    print(asset)
                     if asset.isFavorite {
                         //PHAsset을 Image로 바꿔줄 필요가 있음
                         phImageManager.requestImage(for: asset, targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFill, options: nil) { (image: UIImage?, info) in
                             let isDegraded = (info?[PHImageResultIsDegradedKey] as? Bool) ?? false
                             if isDegraded { return }
                             guard let image = image else { return }
-                            
+                            asset.localIdentifier
                             self.recommendedImages.append(image)
                             DispatchQueue.main.async {
                                 self.selectedImageCollection?.reloadData()
